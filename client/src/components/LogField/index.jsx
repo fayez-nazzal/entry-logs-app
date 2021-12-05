@@ -18,6 +18,9 @@ const LogField = ({ value, setValue }) => {
         },
         marginBottom: 2,
       }}
+      inputProps={{
+        "data-testid": "log-field-input",
+      }}
     />
   );
 };

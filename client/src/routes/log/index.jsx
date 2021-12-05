@@ -45,7 +45,7 @@ const LogRoute = ({
     <Fab
       size="medium"
       color="primary"
-      sx={{ ml: "auto" }}
+      data-testid="send-button"
       onClick={postLog}
       {...props}
     >
@@ -99,6 +99,9 @@ const LogRoute = ({
             right: {
               xs: 32,
               sm: "initial",
+            },
+            ml: {
+              sm: "auto",
             },
           }}
         />

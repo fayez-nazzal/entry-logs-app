@@ -12,6 +12,7 @@ const DateTimePicker = ({ value, setValue, label, ...rest }) => {
         onChange={(newValue) => {
           setValue(newValue);
         }}
+        inputFormat="YYYY/MM/DD HH:mm a"
         renderInput={(params) => <TextField {...params} />}
         {...rest}
       />
