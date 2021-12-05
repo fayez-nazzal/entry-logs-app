@@ -6,6 +6,7 @@
     "server": "cd server && node app.js",
     "serverdev": "cd server && node app.js",
     "client": "cd client && yarn start",
+    "start": "concurrently \"yarn serverdev\" \"yarn client\"",
     "dev": "concurrently \"yarn serverdev\" \"yarn client\""
   },
   "dependencies": {
