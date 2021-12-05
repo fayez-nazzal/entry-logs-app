@@ -1,12 +1,12 @@
 import AdapterDayjs from "@mui/lab/AdapterDayjs";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import MuiDateTimePicker from "@mui/lab/DateTimePicker";
+import MobileDateTimePicker from "@mui/lab/MobileDateTimePicker";
 import TextField from "@mui/material/TextField";
 
 const DateTimePicker = ({ value, setValue, label, ...rest }) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <MuiDateTimePicker
+      <MobileDateTimePicker
         value={value}
         label={label}
         onChange={(newValue) => {

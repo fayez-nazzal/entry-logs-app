@@ -10,8 +10,27 @@ router.get("/", (_, res) =>
     .catch((err) => res.status(500).json(err))
 );
 
+router.delete("/", (_, res) =>
+  EntryLog.destroy({
+    where: {},
+    truncate: true,
+  })
+    .then((entryLogs) => res.status(200).json({ message: "deleted" }))
+    .catch((err) => res.status(500).json(err))
+);
+
 router.get("/:id", (req, res) => {
   EntryLog.findOne({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((entryLog) => res.status(200).json({ message: "deleted" }))
+    .catch((err) => res.status(500).json(err));
+});
+
+router.delete("/:id", (req, res) => {
+  EntryLog.destroy({
     where: {
       id: req.params.id,
     },

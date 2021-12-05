@@ -1,34 +1,43 @@
-import { useEffect, useState } from "react";
-
 import Box from "@mui/material/Box";
 import DateTimePicker from "../../components/DateTimePicker";
 import { Fab } from "@mui/material";
 import LogField from "../../components/LogField/index";
 import SendIcon from "@mui/icons-material/Send";
 import axios from "axios";
-import dayjs from "dayjs";
 
-const baseURL = "http://localhost:3000/entrylogs";
-
-const startOfDay = dayjs().set("hour", 0).set("minute", 0).set("second", 0);
-const endOfDay = dayjs().set("hour", 23).set("minute", 59).set("second", 59);
-
-const LogRoute = () => {
-  const [description, setDescription] = useState("");
-
-  const [startDateTime, setStartDateTime] = useState(startOfDay);
-
-  const [endDateTime, setEndDateTime] = useState(endOfDay);
-
+const LogRoute = ({
+  startDateTime,
+  setStartDateTime,
+  endDateTime,
+  setEndDateTime,
+  description,
+  setDescription,
+  snackStatus,
+  setSnackStatus,
+}) => {
   const postLog = () => {
     axios
-      .post(baseURL, {
+      .post(`${process.env.REACT_APP_BASEPATH}/add`, {
         description,
         startDateTime: startDateTime.toISOString(),
         endDateTime: endDateTime.toISOString(),
       })
       .then(() => {
         setDescription("");
+        setSnackStatus({
+          open: true,
+          message: "Log added successfully",
+          duration: 3000,
+          severity: "success",
+        });
+      })
+      .catch((err) => {
+        setSnackStatus({
+          open: true,
+          message: err.response?.data?.error || err.message,
+          duration: 11000,
+          severity: "error",
+        });
       });
   };
 
