@@ -17,6 +17,15 @@ const db = new Sequelize(
   }
 );
 
+const queryInterface = db.getQueryInterface();
+
+queryInterface.createTable("entrylogs", {
+  id: DataTypes.UUID,
+  startDateTime: DataTypes.DATE,
+  endDateTime: DataTypes.DATE,
+  description: DataTypes.TEXT,
+});
+
 db.authenticate()
   .then(() => {
     console.log("Connection has been established successfully.");
