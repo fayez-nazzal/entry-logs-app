@@ -19,6 +19,11 @@ const containerStyles = {
   marginTop: 5,
 };
 
+const snackbarAnchor = {
+  vertical: "bottom",
+  horizontal: "right",
+};
+
 const startOfDay = dayjs().set("hour", 0).set("minute", 0).set("second", 0);
 const endOfDay = dayjs().set("hour", 23).set("minute", 59).set("second", 59);
 
@@ -47,7 +52,7 @@ const App = () => {
         exclusive
         color="primary"
         size="large"
-        sx={{ mb: 4 }}
+        sx={{ mb: 4, textAlign: "center" }}
         value={pathname.slice(1)}
       >
         <ToggleButton as={(props) => <Link to="/log" {...props} />} value="log">
@@ -71,19 +76,13 @@ const App = () => {
               setEndDateTime={setEndDateTime}
               description={description}
               setDescription={setDescription}
-              snackStatus={snackStatus}
               setSnackStatus={setSnackStatus}
             />
           }
         />
         <Route
           path="/watch"
-          element={
-            <WatchRoute
-              snackStatus={snackStatus}
-              setSnackStatus={setSnackStatus}
-            />
-          }
+          element={<WatchRoute setSnackStatus={setSnackStatus} />}
         />
         <Route path="*" element={<Navigate to="/log" />} />
       </Routes>
@@ -92,10 +91,7 @@ const App = () => {
         autoHideDuration={snackStatus.duration}
         onClose={closeSnackbar}
         message={snackStatus.message}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "right",
-        }}
+        anchorOrigin={snackbarAnchor}
       >
         <Alert
           onClose={closeSnackbar}

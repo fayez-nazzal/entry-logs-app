@@ -11,7 +11,7 @@ import axios from "axios";
 import { formatIsoDateTime } from "../../utils/datetime";
 import { useEffect } from "react";
 
-const WatchRoute = ({ snackStatus, setSnackStatus }) => {
+const WatchRoute = ({ setSnackStatus }) => {
   const [logs, setLogs] = useState([]);
 
   useEffect(() => {
@@ -79,6 +79,10 @@ const WatchRoute = ({ snackStatus, setSnackStatus }) => {
               <Box
                 sx={{
                   display: "flex",
+                  flexDirection: {
+                    xs: "column",
+                    sm: "row",
+                  },
                 }}
               >
                 <Typography

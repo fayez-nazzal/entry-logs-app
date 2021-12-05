@@ -1,6 +1,7 @@
 import Box from "@mui/material/Box";
 import DateTimePicker from "../../components/DateTimePicker";
 import { Fab } from "@mui/material";
+import Hidden from "@mui/material/Hidden";
 import LogField from "../../components/LogField/index";
 import SendIcon from "@mui/icons-material/Send";
 import axios from "axios";
@@ -12,7 +13,6 @@ const LogRoute = ({
   setEndDateTime,
   description,
   setDescription,
-  snackStatus,
   setSnackStatus,
 }) => {
   const postLog = () => {
@@ -41,6 +41,18 @@ const LogRoute = ({
       });
   };
 
+  const SendFab = (props) => (
+    <Fab
+      size="medium"
+      color="primary"
+      sx={{ ml: "auto" }}
+      onClick={postLog}
+      {...props}
+    >
+      <SendIcon />
+    </Fab>
+  );
+
   return (
     <>
       <LogField value={description} setValue={setDescription} />
@@ -55,6 +67,10 @@ const LogRoute = ({
           display: "flex",
           alignItems: "center",
           justifyContent: "flex-start",
+          flexDirection: {
+            xs: "column",
+            sm: "row",
+          },
           mt: 1,
         }}
       >
@@ -63,20 +79,29 @@ const LogRoute = ({
           setValue={setStartDateTime}
           label="Start Date"
         />
-        <Box ml={3} />
+        <Box ml={{ sm: 1, md: 3 }} mb={{ xs: 3, sm: 0 }} />
         <DateTimePicker
           value={endDateTime}
           setValue={setEndDateTime}
           label="End Date"
         />
-        <Fab
-          size="medium"
-          color="primary"
-          sx={{ ml: "auto" }}
-          onClick={postLog}
-        >
-          <SendIcon />
-        </Fab>
+        <Box mr={{ sm: 1, md: 2 }} />
+        <SendFab
+          sx={{
+            position: {
+              xs: "absolute",
+              sm: "static",
+            },
+            bottom: {
+              xs: 32,
+              sm: "initial",
+            },
+            right: {
+              xs: 32,
+              sm: "initial",
+            },
+          }}
+        />
       </Box>
     </>
   );
