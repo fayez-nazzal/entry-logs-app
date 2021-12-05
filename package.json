@@ -1,0 +1,15 @@
+{
+  "name": "entry-logs-api",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "server": "cd server && node app.js",
+    "serverdev": "cd server && node app.js",
+    "client": "cd client && yarn start",
+    "dev": "concurrently \"yarn serverdev\" \"yarn client\""
+  },
+  "dependencies": {
+    "concurrently": "^6.4.0"
+  },
+  "devDependencies": {}
+}
