@@ -11,6 +11,7 @@ The app is divided into 2 parts:
 ## Server
 Technologies used:
 - Node.js
+- Express
 - PostgresSQL
 - Sequelize
 - Heroku
