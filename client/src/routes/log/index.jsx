@@ -1,7 +1,6 @@
 import Box from "@mui/material/Box";
 import DateTimePicker from "../../components/DateTimePicker";
 import { Fab } from "@mui/material";
-import Hidden from "@mui/material/Hidden";
 import LogField from "../../components/LogField/index";
 import SendIcon from "@mui/icons-material/Send";
 import axios from "axios";
