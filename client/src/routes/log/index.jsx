@@ -1,26 +1,36 @@
+import { useEffect, useState } from "react";
+
 import Box from "@mui/material/Box";
 import DateTimePicker from "../../components/DateTimePicker";
 import { Fab } from "@mui/material";
 import LogField from "../../components/LogField/index";
 import SendIcon from "@mui/icons-material/Send";
+import axios from "axios";
 import dayjs from "dayjs";
-import { useState } from "react";
 
-const containerStyles = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  marginTop: 8,
-};
+const baseURL = "http://localhost:3000/entrylogs";
+
+const startOfDay = dayjs().set("hour", 0).set("minute", 0).set("second", 0);
+const endOfDay = dayjs().set("hour", 23).set("minute", 59).set("second", 59);
 
 const LogRoute = () => {
   const [description, setDescription] = useState("");
-  const [startDateTime, setStartDateTime] = useState(
-    dayjs().set("hour", 0).set("minute", 0).set("second", 0)
-  );
-  const [endDateTime, setEndDateTime] = useState(
-    dayjs().set("hour", 23).set("minute", 59).set("second", 59)
-  );
+
+  const [startDateTime, setStartDateTime] = useState(startOfDay);
+
+  const [endDateTime, setEndDateTime] = useState(endOfDay);
+
+  const postLog = () => {
+    axios
+      .post(baseURL, {
+        description,
+        startDateTime: startDateTime.toISOString(),
+        endDateTime: endDateTime.toISOString(),
+      })
+      .then(() => {
+        setDescription("");
+      });
+  };
 
   return (
     <>
@@ -50,7 +60,12 @@ const LogRoute = () => {
           setValue={setEndDateTime}
           label="End Date"
         />
-        <Fab size="medium" color="primary" sx={{ ml: "auto" }}>
+        <Fab
+          size="medium"
+          color="primary"
+          sx={{ ml: "auto" }}
+          onClick={postLog}
+        >
           <SendIcon />
         </Fab>
       </Box>

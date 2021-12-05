@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "server": "cd server && node app.js",
-    "serverdev": "cd server && node app.js",
+    "server": "cd server && yarn start",
+    "serverdev": "cd server && yarn dev",
     "client": "cd client && yarn start",
     "start": "concurrently \"yarn serverdev\" \"yarn client\"",
     "dev": "concurrently \"yarn serverdev\" \"yarn client\""
